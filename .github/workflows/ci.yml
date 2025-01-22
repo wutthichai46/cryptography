@@ -42,10 +42,10 @@ jobs:
           - {VERSION: "3.12", NOXSESSION: "rust,tests", OPENSSL: {TYPE: "libressl", VERSION: "3.9.2"}}
           - {VERSION: "3.12", NOXSESSION: "rust,tests", OPENSSL: {TYPE: "libressl", VERSION: "4.0.0"}}
           - {VERSION: "3.12", NOXSESSION: "tests-randomorder"}
-          # Latest commit on the BoringSSL master branch, as of Jan 16, 2025.
-          - {VERSION: "3.12", NOXSESSION: "rust,tests", OPENSSL: {TYPE: "boringssl", VERSION: "a8a4fce24dee0c6f4a41326338309c20af77acaf"}}
-          # Latest commit on the OpenSSL master branch, as of Jan 16, 2025.
-          - {VERSION: "3.12", NOXSESSION: "tests", OPENSSL: {TYPE: "openssl", VERSION: "b26894ec6945656113fd9556527765aba08e4355"}}
+          # Latest commit on the BoringSSL master branch, as of Jan 22, 2025.
+          - {VERSION: "3.12", NOXSESSION: "rust,tests", OPENSSL: {TYPE: "boringssl", VERSION: "6e8adf5287af7fef7c401c09fb8642029e6daec1"}}
+          # Latest commit on the OpenSSL master branch, as of Jan 22, 2025.
+          - {VERSION: "3.12", NOXSESSION: "tests", OPENSSL: {TYPE: "openssl", VERSION: "908bc0994d70f3d8e74052549a8e343e030ab6a7"}}
           # Builds with various Rust versions. Includes MSRV and next
           # potential future MSRV.
           # - 1.70: crates.io sparse protocol by default
@@ -170,8 +170,8 @@ jobs:
           - {IMAGE: "centos-stream10", NOXSESSION: "tests", RUNNER: "ubuntu-latest"}
           - {IMAGE: "centos-stream10-fips", NOXSESSION: "tests", RUNNER: "ubuntu-latest", FIPS: true}
 
-          - {IMAGE: "ubuntu-rolling:aarch64", NOXSESSION: "tests", RUNNER: [self-hosted, Linux, ARM64]}
-          - {IMAGE: "alpine:aarch64", NOXSESSION: "tests", RUNNER: [self-hosted, Linux, ARM64]}
+          - {IMAGE: "ubuntu-rolling:aarch64", NOXSESSION: "tests", RUNNER: "ubuntu-24.04-arm"}
+          - {IMAGE: "alpine:aarch64", NOXSESSION: "tests", RUNNER: "ubuntu-24.04-arm"}
     timeout-minutes: 15
     env:
       RUSTUP_HOME: /root/.rustup

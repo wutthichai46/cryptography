@@ -405,6 +405,25 @@ class TestDERSerialization:
         with pytest.raises(ValueError):
             load_der_parameters(param_data, backend)
 
+    @pytest.mark.xfail()
+    def test_load_pkcs8_private_key_invalid_version(self):
+        data = load_vectors_from_file(
+            os.path.join("asymmetric", "PKCS8", "invalid-version.der"),
+            lambda f: f.read(),
+            mode="rb",
+        )
+        with pytest.raises(ValueError):
+            load_der_private_key(data, password=None)
+
+    def test_load_pkcs8_private_key_unknown_oid(self):
+        data = load_vectors_from_file(
+            os.path.join("asymmetric", "PKCS8", "unknown-oid.der"),
+            lambda f: f.read(),
+            mode="rb",
+        )
+        with pytest.raises(ValueError):
+            load_der_private_key(data, password=None)
+
 
 class TestPEMSerialization:
     @pytest.mark.parametrize(
@@ -1070,6 +1089,34 @@ class TestPEMSerialization:
                     pemfile.read().encode(), password, backend
                 ),
             )
+
+    @pytest.mark.xfail()
+    def test_rsa_private_key_invalid_version(self):
+        data = load_vectors_from_file(
+            os.path.join(
+                "asymmetric",
+                "Traditional_OpenSSL_Serialization",
+                "rsa-wrong-version.pem",
+            ),
+            lambda f: f.read(),
+            mode="rb",
+        )
+        with pytest.raises(ValueError):
+            load_pem_private_key(data, password=None)
+
+    @pytest.mark.xfail()
+    def test_dsa_private_key_invalid_version(self):
+        data = load_vectors_from_file(
+            os.path.join(
+                "asymmetric",
+                "Traditional_OpenSSL_Serialization",
+                "dsa-wrong-version.pem",
+            ),
+            lambda f: f.read(),
+            mode="rb",
+        )
+        with pytest.raises(ValueError):
+            load_pem_private_key(data, password=None)
 
 
 class TestKeySerializationEncryptionTypes:

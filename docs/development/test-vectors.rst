@@ -189,6 +189,29 @@ Custom asymmetric vectors
   ``TEST(DSATest, NilpotentGenerator)``).
 * ``asymmetric/PKCS8/ec-invalid-private-scalar.pem`` - Contains a PKCS8 encoded
   PEM with a ``secp256r1`` OID and an invalid (very large) private scalar.
+* ``asymmetric/PKCS8/invalid-version.der`` - Contains a PKCS8 encoded DER with
+  an invalid version field.
+* ``asymmetric/PKCS8/unknown-oid.der`` - Contains a PKCS8 encoded DER with an
+  unknown OID.
+* ``asymmetric/Traditional_OpenSSL_Serialization/rsa-wrong-version.pem`` - An
+  RSA key, encoded as a "traditional" ``RSA PRIVATE KEY`` PEM block, with an
+  invalid version number.
+* ``asymmetric/Traditional_OpenSSL_Serialization/dsa-wrong-version.pem`` - A
+  DSA key, encoded as a "traditional" ``DSA PRIVATE KEY`` PEM block, with an
+  invalid version number.
+* ``asymmetric/PKCS8/ec-inconsistent-curve.pem`` - A PKCS8 encoded EC key where
+  the the curve OID in the parameters does not match the curve OID in the key.
+* ``asymmetric/PKCS8/ec-inconsistent-curve2.pem`` - A PKCS8 encoded EC key
+  where the the curve OID in the parameters does not match the curve OID in
+  the key (the OIDs are reversed from ``ec-inconsistent-curve.pem``).
+* ``asymmetric/EC/ec-missing-curve.pem`` - A PKCS#1 encoded EC key where the
+  curve OID is missing.
+* ``asymmetric/PKCS8/ec-consistent-curve.pem`` - A PKCS8 encoded EC key where
+  the the curve OID in the parameters is the same as the curve OID in the key
+  (encoding the curve OID twice is duplicative, as the inner curve is
+  optional).
+* ``asymmetric/PKCS8/ec-invalid-version.pem`` - A PKCS8 encoded EC key with an
+  invalid elliptic curve version field.
 
 
 Key exchange
